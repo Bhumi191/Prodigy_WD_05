@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atmos — Weather Intelligence</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="weather-clear">
+
+    <!-- Dynamic Weather Background -->
+    <div class="background">
+        <div class="noise"></div>
+        <div class="grid-pattern"></div>
+        <div id="weatherParticles"></div>
+
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+    </div>
+
+    <main class="app">
+
+        <!-- Header -->
+        <header class="topbar">
+
+            <div class="brand">
+                <div class="brand-mark">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div>
+                    <h1>ATMOS</h1>
+                    <p>WEATHER INTELLIGENCE</p>
+                </div>
+            </div>
+
+            <div class="header-status">
+                <span class="status-dot"></span>
+                LIVE WEATHER DATA
+            </div>
+
+        </header>
+
+
+        <!-- Search -->
+        <section class="search-section">
+
+            <div class="search-box">
+
+                <div class="search-icon">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="M16 16L21 21"></path>
+                    </svg>
+                </div>
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Search city..."
+                    autocomplete="off"
+                >
+
+                <button id="searchBtn">SEARCH</button>
+
+            </div>
+
+            <button class="location-btn" id="locationBtn">
+                <span>◎</span>
+                Use my location
+            </button>
+
+        </section>
+
+
+        <!-- Error -->
+        <div class="error-message" id="errorMessage"></div>
+
+
+        <!-- Main Weather -->
+        <section class="weather-layout">
+
+            <!-- Main temperature card -->
+            <div class="temperature-card">
+
+                <div class="card-label">
+                    <span class="live-indicator"></span>
+                    CURRENT CONDITIONS
+                </div>
+
+                <div class="location">
+                    <span class="location-pin">◉</span>
+                    <span id="locationName">New Delhi</span>
+                </div>
+
+                <div class="temperature-row">
+
+                    <div class="temperature">
+                        <span id="temperature">28</span>
+                        <sup>°C</sup>
+                    </div>
+
+                    <div class="weather-icon-large" id="weatherIcon">
+                        ☀
+                    </div>
+
+                </div>
+
+                <h2 id="weatherDescription">Clear skies</h2>
+
+                <p class="feels">
+                    Feels like <strong id="feelsLike">30°C</strong>
+                </p>
+
+                <div class="date-display" id="dateDisplay">
+                    Friday, 15 August 2026
+                </div>
+
+            </div>
+
+
+            <!-- Weather details -->
+            <div class="details-grid">
+
+                <div class="detail-card">
+                    <span class="detail-icon">💧</span>
+                    <div>
+                        <small>HUMIDITY</small>
+                        <strong id="humidity">64%</strong>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <span class="detail-icon">≋</span>
+                    <div>
+                        <small>WIND SPEED</small>
+                        <strong id="wind">12 km/h</strong>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <span class="detail-icon">◒</span>
+                    <div>
+                        <small>PRESSURE</small>
+                        <strong id="pressure">1012 hPa</strong>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <span class="detail-icon">☀</span>
+                    <div>
+                        <small>UV INDEX</small>
+                        <strong id="uv">5</strong>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Today's Highlights -->
+        <section class="highlights-section">
+
+            <div class="section-heading">
+                <div>
+                    <span>ATMOSPHERIC DATA</span>
+                    <h2>Today's Highlights</h2>
+                </div>
+
+                <div class="weather-state" id="weatherState">
+                    CLEAR / CALM
+                </div>
+            </div>
+
+
+            <div class="highlight-grid">
+
+                <div class="highlight-card sunrise-card">
+                    <div class="highlight-top">
+                        <span>SUNRISE</span>
+                        <span>☼</span>
+                    </div>
+
+                    <strong id="sunrise">05:52 AM</strong>
+
+                    <div class="mini-line">
+                        <span></span>
+                    </div>
+
+                    <p>First light of the day</p>
+                </div>
+
+
+                <div class="highlight-card sunset-card">
+                    <div class="highlight-top">
+                        <span>SUNSET</span>
+                        <span>◐</span>
+                    </div>
+
+                    <strong id="sunset">06:52 PM</strong>
+
+                    <div class="mini-line">
+                        <span></span>
+                    </div>
+
+                    <p>Golden hour approaching</p>
+                </div>
+
+
+                <div class="highlight-card visibility-card">
+                    <div class="highlight-top">
+                        <span>VISIBILITY</span>
+                        <span>◎</span>
+                    </div>
+
+                    <strong id="visibility">10 km</strong>
+
+                    <div class="visibility-meter">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <p>Excellent visibility</p>
+                </div>
+
+
+                <div class="highlight-card air-card">
+                    <div class="highlight-top">
+                        <span>AIR QUALITY</span>
+                        <span>⌁</span>
+                    </div>
+
+                    <strong id="airQuality">Good</strong>
+
+                    <div class="air-meter">
+                        <div></div>
+                    </div>
+
+                    <p>Clean atmospheric conditions</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Forecast -->
+        <section class="forecast-section">
+
+            <div class="section-heading">
+                <div>
+                    <span>UPCOMING CONDITIONS</span>
+                    <h2>5-Day Forecast</h2>
+                </div>
+            </div>
+
+            <div class="forecast-container" id="forecastContainer"></div>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer>
+
+            <div>
+                <strong>ATMOS</strong>
+                <span>Weather data powered by Open-Meteo</span>
+            </div>
+
+            <div>
+                <span id="lastUpdated">Updated just now</span>
+            </div>
+
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
